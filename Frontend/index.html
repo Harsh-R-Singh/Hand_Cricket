@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>DigiCric</title>
+</head>
+<body>
+    <div id="body" class="min-h-screen z-[-1] bg-[url(https://images.unsplash.com/photo-1596807996038-612df413be5e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center">
+        <!-- <div>
+            <img src="my.jpg" alt="">
+        </div>     -->
+        <nav class="bg-[rgba(0,0,0,0.4)] bg-opacity-80 text-white px-6 py-4 shadow-md">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+              <!-- Logo -->
+              <div class="text-2xl font-bold tracking-wide">
+                DigiCric
+              </div>
+          
+              <!-- Navigation Links -->
+              <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="#" class="hover:text-gray-300 transition duration-200">How to Play</a></li>
+                <li><a href="#" class="hover:text-gray-300 transition duration-200">About</a></li>
+              </ul>
+          
+              <!-- Mobile Menu Icon (Optional if you want to add toggle later) -->
+              <div class="md:hidden">
+                <button id="menu-toggle" class="focus:outline-none">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M4 5h16M4 12h16M4 19h16"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </nav>
+          
+        <div>
+            <div class="md: flex justify-center items-center h-screen flex-col space-y-6 ">
+                <p class="text-7xl text-transparent [-webkit-text-stroke:2px_white]
+                md:text-9xl font-bold">Game on!</p>
+                <p class="text-black md:text-xl font-bold ">No bat? No ball? No problem — just hands and sheer luck!</p>
+                <button id="button" class="group relative border-none cursor-pointer bg-black rounded-xl">
+                    <span
+                    class="block box-border border-2 border-black rounded-xl px-6 py-3 bg-[#e8e8e8] text-black font-bold text-[17px] transform translate-y-[-0.5] transition-transform duration-100 ease-in-out
+                    group-hover:-translate-y-0.5
+                    group-active:translate-y-0">
+                    <a href="index_1.html">PLAY</a>
+                </span>
+            </button>
+
+            <button onclick="window.location.href='camera_mode.html'" class="group bg-black rounded-xl">
+              <span class="block border-2 border-black px-6 py-3 bg-[#e8e8e8] text-black font-bold text-[17px]">
+                 <a href="camera_mode.html">Camera Mode</a>
+              </span>
+            </button>
+            
+
+            <div class="bg-black"></div>
+        </div>
+        
+    </div> 
+</div>
+</body>
+</html>

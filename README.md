@@ -4,6 +4,7 @@ This project is a real-time, gesture-controlled version of the traditional hand 
 
 The backend, built with **Flask**, processes the video stream and communicates with a **JavaScript-based frontend** using **WebSockets**. The frontend displays live scores, user input, and game status. This project demonstrates the integration of computer vision, real-time processing, and web-based interaction.
 
+**NOTE** : This project is still in development.
 
 ## Project Structure
 

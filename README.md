@@ -1,6 +1,9 @@
-# Hand Cricket game using OpenCV
+## Hand Cricket Game using OpenCV
 
-This project is a finger counting application that uses OpenCV to detect and count the number of fingers shown by the user. It consists of a backend built with Flask and a frontend that communicates with the backend to display the results.
+This project is a real-time, gesture-controlled version of the traditional hand cricket game. It uses **OpenCV** with a **custom hand tracking module** to detect the number of fingers shown by the player via webcam. The finger count is used as input for gameplay (batting and bowling). 
+
+The backend, built with **Flask**, processes the video stream and communicates with a **JavaScript-based frontend** using **WebSockets**. The frontend displays live scores, user input, and game status. This project demonstrates the integration of computer vision, real-time processing, and web-based interaction.
+
 
 ## Project Structure
 
@@ -23,7 +26,6 @@ finger-counter-app
 1. **Clone the repository:**
    ```
    git clone <repository-url>
-   cd finger-counter-app
    ```
 
 2. **Install the required Python packages:**

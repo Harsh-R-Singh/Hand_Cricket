@@ -1,4 +1,4 @@
-# Finger Counter App
+# Hand Cricket game using OpenCV
 
 This project is a finger counting application that uses OpenCV to detect and count the number of fingers shown by the user. It consists of a backend built with Flask and a frontend that communicates with the backend to display the results.
 

@@ -14,6 +14,15 @@ const detectBtn = document.getElementById('detectBtn');
 const batBtn = document.getElementById('batBtn');
 const bowlBtn = document.getElementById('bowlBtn');
 
+// Add this after your other button declarations
+const playAgainBtn = document.createElement('button');
+playAgainBtn.id = "playAgainBtn";
+playAgainBtn.className = "btn";
+playAgainBtn.textContent = "Play Again";
+playAgainBtn.style.display = "none";
+playAgainBtn.onclick = resetGame;
+document.querySelector('.container').appendChild(playAgainBtn);
+
 // Camera setup
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
@@ -79,11 +88,13 @@ async function startCameraToss() {
     batBtn.style.display = "inline-block";
     bowlBtn.style.display = "inline-block";
     tossDone = true;
+    detectBtn.style.display = "none"; // Hide the toss button after toss
   } else {
     userChoice = Math.random() < 0.5 ? "bowl" : "bat";
     isUserBatting = userChoice === "bat";
     setStatus(`Computer picked ${computerNumber} and won the toss and chose to ${userChoice} first.`, "#f472b6");
     tossDone = true;
+    detectBtn.style.display = "none"; // Hide the toss button after toss
     setTimeout(startInnings, 2000);
   }
 }
@@ -122,8 +133,20 @@ async function startInnings() {
     }
     if (isUserBatting) {
       userScore += userRun;
+      // If it's the second innings and user is batting, check if user has overtaken computer
+      if (isSecondInnings && userScore > computerScore) {
+        clearInterval(interval);
+        declareResult("user");
+        return;
+      }
     } else {
       computerScore += compRun;
+      // If it's the second innings and computer is batting, check if computer has overtaken user
+      if (isSecondInnings && computerScore > userScore) {
+        clearInterval(interval);
+        declareResult("computer");
+        return;
+      }
     }
     updateScore();
   }, 1200);
@@ -144,13 +167,13 @@ function endInnings() {
   }
 }
 
-function declareResult() {
+function declareResult(winner = null) {
   let message = "";
   let color = "#38bdf8";
-  if (userScore > computerScore) {
+  if (winner === "user" || userScore > computerScore) {
     message = "🏆 You won!";
     color = "#a3e635";
-  } else if (userScore < computerScore) {
+  } else if (winner === "computer" || userScore < computerScore) {
     message = "💻 Computer won!";
     color = "#f472b6";
   } else {
@@ -158,5 +181,22 @@ function declareResult() {
     color = "#fbbf24";
   }
   setStatus(`${message} Final Score - You: ${userScore}, Computer: ${computerScore}`, color);
+  playAgainBtn.style.display = "inline-block"; // Show Play Again button
+}
 
+// Add this function at the end of your file
+function resetGame() {
+  userChoice = "";
+  userScore = 0;
+  computerScore = 0;
+  isUserBatting = true;
+  isSecondInnings = false;
+  tossDone = false;
+  if (interval) clearInterval(interval);
+  batBtn.style.display = "none";
+  bowlBtn.style.display = "none";
+  detectBtn.style.display = "inline-block";
+  playAgainBtn.style.display = "none";
+  setStatus("Game reset! Click Start Toss to play again.", "#38bdf8");
+  setScore("You: 0 | Computer: 0");
 }

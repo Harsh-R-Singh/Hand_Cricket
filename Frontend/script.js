@@ -117,7 +117,6 @@ window.onload = function () {
       <p class="text-3xl">${isUserBatting ? "You're Batting" : "You're Bowling"}</p>
       <p id="scoreDisplay" class="text-xl py-4">You: ${userScore} | Computer: ${computerScore}</p>
       <div class="flex flex-wrap justify-center gap-4 max-w-md mx-auto py-4">
-
         ${[1, 2, 3, 4, 5, 6].map(num => `
           <button data-run="${num}" class="group relative border-none cursor-pointer bg-black rounded-xl">
             <span
@@ -139,8 +138,18 @@ window.onload = function () {
         } else {
           if (isUserBatting) {
             userScore += userRun;
+            // If second innings and user is batting, check if user overtakes computer
+            if (isSecondInnings && userScore > computerScore) {
+              declareResult("user");
+              return;
+            }
           } else {
             computerScore += compRun;
+            // If second innings and computer is batting, check if computer overtakes user
+            if (isSecondInnings && computerScore > userScore) {
+              declareResult("computer");
+              return;
+            }
           }
           updateScore();
         }
@@ -163,11 +172,11 @@ window.onload = function () {
     }
   }
 
-  function declareResult() {
+  function declareResult(winner = null) {
     let message = "";
-    if (userScore > computerScore) {
+    if (winner === "user" || userScore > computerScore) {
       message = "🏆 You won!";
-    } else if (userScore < computerScore) {
+    } else if (winner === "computer" || userScore < computerScore) {
       message = "💻 Computer won!";
     } else {
       message = "🤝 It's a draw!";
